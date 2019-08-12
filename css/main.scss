@@ -1,0 +1,688 @@
+
+$colors: (
+    primary-red: #cc171e,
+    font-grey: #697b83,
+    dark-blue: #11161d
+);
+
+$fonts: (
+    mery: 'Merriweather',
+    roboto: 'Roboto',
+    awesome: 'Font Awesome'
+);
+
+
+
+@function color($color-name){
+    @return map-get($colors, $color-name);   
+}
+
+@function fonts($font-name){
+    @return map-get($fonts, $font-name);
+}
+
+//
+//  MEDIA QUERIES
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 480px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin breakpoint-up($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-below(sm) {}
+@mixin breakpoint-down($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin breakpoint-between($lower, $upper) {
+
+    // If both the lower and upper breakpoints exist in the map.
+    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+  
+      // Get the lower and upper breakpoints.
+      $lower-breakpoint: map-get($breakpoints, $lower);
+      $upper-breakpoint: map-get($breakpoints, $upper);
+  
+      // Write the media query.
+      @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+        @content;
+      }
+    
+    // If one or both of the breakpoints don't exist.
+    } @else {
+  
+      // If lower breakpoint is invalid.
+      @if (map-has-key($breakpoints, $lower) == false) {
+  
+        // Log a warning.
+        @warn 'Your lower breakpoint was invalid: #{$lower}.';
+      }
+  
+      // If upper breakpoint is invalid.
+      @if (map-has-key($breakpoints, $upper) == false) {
+  
+        // Log a warning.
+        @warn 'Your upper breakpoint was invalid: #{$upper}.';
+      }
+    }
+  }
+
+
+
+* {
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color:white;
+}
+
+.wrapper {
+    padding-left:30px;
+}
+
+.w-100 {
+    position:relative;
+}
+
+.subpage-title {
+    color:grey;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    height:45px;
+    align-items: center;
+
+    @include breakpoint-up(md) {
+            padding-left :40px;
+    }
+}
+
+.above-fold {
+    background: url(/img/curve-1.svg), linear-gradient(15deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), linear-gradient(15deg, rgba(17,22,29, 0.3), rgba(17,22,29, 0.3)), url(/img/beverage-books-caffeine-904616.jpg);
+    background-repeat: no-repeat;
+    background-position: right 0px, center, center, bottom;
+    background-size: cover;
+    height:80vh;
+    position: relative;
+    
+
+    @include breakpoint-up(md){
+        background: url(/img/curve-2.svg), url(/img/curve-1.svg), linear-gradient(15deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), linear-gradient(15deg, rgba(17,22,29, 0.3), rgba(17,22,29, 0.3)), url(/img/beverage-books-caffeine-904616.jpg);
+        background-repeat: no-repeat;
+        background-position: left 10px, right 0px, center, center, bottom;
+        background-size: cover;
+        height:95vh;
+        position: relative;
+    }
+
+    .tag-right {
+        color:white;
+        position: absolute;
+        right:-60px;
+        top:300px;
+        transform: rotate(-90deg);
+        text-transform: uppercase;
+        font-size:0.5rem;
+        letter-spacing: 0.5em;
+
+        &::before {
+            content:"";
+            position: absolute;
+            background-color: color(primary-red);
+            width: 3px;
+            height: 13px;
+            top: 0px;
+            left: -15px;
+        }
+    }
+
+    .tag-left {
+        color:white;
+        position: absolute;
+        top:620px;
+        left:-40px;
+        transform: rotate(-90deg);
+        text-transform: uppercase;
+        font-size:0.6rem;
+        letter-spacing: 0.5em;
+        font-weight: bold;
+    }
+
+}
+
+#logo {
+    background-color: color(primary-red);
+    left: -20px;
+    top:220px;
+    padding: 20px;
+    font-family: fonts(mery), serif;
+    font-weight: 900;
+    color:white;
+}
+
+#sub-nav {
+    color:white;
+    width:100%;
+    height:100px;
+    padding:40px 40px 0 0 ;
+    align-items: center;
+
+    .user-thumb {
+        width:60px;
+        height:60px;
+        margin-left:20px;
+
+        img {
+            border-radius: 50%;
+            width:100%;
+            height:100%;
+        }
+    }
+
+    .fa-search {
+        color:white;
+    }
+}
+
+nav {
+    width:100%;
+    position:relative;
+    height:70px;
+    left:-40px;
+    border-bottom:1px solid rgba(192, 192, 192, 0.5);
+
+    .navbar-toggler-icon {
+        color:white;
+    }
+
+    .navbar-nav {
+        margin-left: 150px;
+    }
+
+    .nav-link {
+    color:white!important;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-size: 0.8rem;
+    }
+
+    .active {
+        border-bottom:5px solid color(primary-red);
+    }
+
+    .dropdown-menu {
+        background: white;
+        border:none;
+        
+        a {
+            text-transform: none;
+        }
+    }
+}
+
+.above-fold-content {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .page-title {
+        overflow: hidden;
+        width: fit-content;
+        position: relative; 
+
+        @include breakpoint-down(xl){
+            margin: 20px auto 10px auto;
+        }
+
+
+        @include breakpoint-up(md){
+            margin-top:80px;
+        }
+
+        h1 {
+            font-family: fonts(mery), serif;
+            font-weight: bold;
+            position: relative;
+
+            @include breakpoint-down(xs){
+                font-size: 5rem;
+            }
+
+            @include breakpoint-between(xs, lg){
+                font-size:7rem;
+            }
+
+            @include breakpoint-up(lg){
+                font-size: 12rem;
+            }
+        }
+    
+        .page-date {
+            position: absolute;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            top: 20px;
+            left: 10px;
+
+            @include breakpoint-between(xs, lg){
+                top:110px;
+                left:180px;
+            }
+
+           @include breakpoint-down(xs){
+               top:80px;
+               left:0px;
+           }
+        }
+    }
+
+    h2 {
+        font-family: fonts(roboto), sans-serif;
+        font-size: 2.3rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: -0.1rem;
+        word-spacing: 0.3rem;
+        padding-top: 60px;
+    }
+}
+
+
+.below-fold {
+    background-color: color(primary-red);
+    color:white;
+
+    a {
+        color:white;
+    }
+
+    h1 {
+        font-family: 'Merriweather', serif;
+        font-weight: bold;
+        padding: 40px 0px 50px 0px;
+        text-shadow: 1px 1px 0px black;
+    }
+
+    .row {
+        justify-content: space-between;
+        @include breakpoint-down(lg){
+            justify-content: space-around;
+        }
+        padding-bottom: 50px;
+    }
+    
+}
+
+.card-transperant {
+    max-width: 275px;
+    min-width:250px;
+    margin-bottom:50px;
+    position: relative;
+
+    @include breakpoint-down(md){
+        margin: 50px auto 20px auto;
+        max-width: 500px;
+        min-width:250px;
+    }
+
+    .plus-button {
+        position: absolute;
+        width:30px;
+        height:30px;
+        top:120px;
+        right:10px;
+        background-color: color(primary-red);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    img {
+        object-fit: cover;
+        max-height: 160px;
+    }
+
+    .card-body {
+        padding:10px 0px;
+    }
+}
+
+.blog-article{
+    padding: 50px 0px 200px 0px;
+    background:radial-gradient(circle, rgba(17,22,29,1) 0%, rgba(21,26,34,0.05646008403361347) 50%), linear-gradient(175deg, rgba(17,22,29,1) 0%, rgba(17,22,29,1) 10%, rgba(21,26,34,1) 54%, rgba(21,26,34,0.15449929971988796) 100%), url('/img/book-stack-books-bookshop-264635.jpg');
+    background-size: cover;
+    background-position: -200px -50px, left 0px, center;
+    color:white;
+    font-family: 'Merriweather', serif;
+    font-size:0.77rem;
+    line-height: 1.7rem;
+    letter-spacing: 0.03rem;
+
+    .side-tag-right{
+        &::before {
+            content: '';
+            height:5px;
+            width:30px;
+            position:absolute;
+            background-color: color(primary-red);
+        }
+    
+        right:0px;
+        top:50px;
+        transform: rotate(-90deg);
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        color:grey;
+    }
+
+    .blog-breadcrumbs {
+        margin-top:50px;
+        padding:20px 0px;
+        text-transform: uppercase;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+
+        span {
+            color:grey;
+            padding: 0 10px;
+        }
+
+        a.root {
+            color: color(primary-red);
+        }
+    }
+
+    .content-overview {
+        padding-left:0px;
+        padding-right:20px;
+
+        @include breakpoint-down(md){
+            margin:0 auto;
+            padding: 0px 2px 30px 0px;
+        } 
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            padding-bottom:15px;
+        }
+
+        h2 {
+            font-style: italic;
+            font-size: 1.1rem;
+            font-weight: normal;
+            line-height:1.8rem;
+        }
+    }
+
+    .content-columns {
+        column-count: 2;
+        column-gap:2rem;
+        padding-left:60px;
+        padding-right:0px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+		left: 0;
+		right: 0;
+		background:rgba(17,22,29,1);
+        width: 100%;
+        height: 70px;
+		transform-origin: top right;
+        transform: skewY(-2deg) translate(0px, -115px);
+    }
+}
+
+.blog-cards {
+    padding: 20px 0px 50px 0px;
+    background-color: #f2f2f2;
+    font-family: fonts(mery);
+
+    .row {
+        justify-content: space-around;
+        @include breakpoint-up(lg) {
+            justify-content: space-between;
+        }
+    }
+    
+    .card-white{
+        background-color: white;
+        width:32%;
+        min-width:250px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        
+        @include breakpoint-up(lg){
+            width: 32%;
+        }
+
+        @include breakpoint-between(md, lg){
+            width:48%;
+            margin-bottom: 25px;
+        }
+
+        @include breakpoint-down(md){
+            width:90%;
+            margin-bottom: 30px;
+        }
+        
+        p {
+            font-size:0.79rem;
+            color: color(font-grey);
+            line-height:1.5rem;
+        }
+
+        h1 {
+            color:color(dark-blue);
+            font-size:1.5rem;
+            font-weight: bold;
+            padding-bottom:10px;
+        }
+
+        .card-img {
+            object-fit: cover;
+            max-height: 250px;
+        }
+
+        .card-body {
+            padding:30px;
+        }
+
+        .card-meta {
+            position: relative; 
+            border-top: 1px solid #f2f2f2;
+            padding:15px 30px;
+            color: color(primary-red);
+            font-size:0.8rem;
+            
+            a {
+                color: color(primary-red);
+            }
+
+            a.read-more-arrow {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                background-color: color(primary-red);
+                height:100%;
+                width:50px;
+                right:0px;
+                top:0px;
+                padding:20px;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+		left: 0;
+		right: 0;
+		background:inherit;
+        width: 100%;
+        height: 80px;
+		transform-origin: top left;
+        transform: skewY(2deg) translate(0px, -100px);
+    }
+}
+
+.footer {
+    background-color: color(dark-blue);
+    color: white;
+    
+    @include breakpoint-up(lg){
+        padding:40px 100px;
+
+        .left, .right {
+            width:50%;
+        }
+
+        .left{
+            padding-right:30px;}
+    }
+
+    @include breakpoint-down(lg){
+        padding:40px 50px;
+    }
+
+    
+    p {
+        font-size: 0.8rem;
+        line-height:1.7rem;
+        padding-bottom:20px;
+    }
+
+    .social-media {
+        display:flex;
+        justify-content: center;
+        align-items: baseline;
+        padding-right:20px;
+        
+        @include breakpoint-down(lg){
+            order:3;
+            margin-top:30px;
+        }
+
+        @include breakpoint-between(lg, xl){
+            padding-right:0px;
+        }
+    }
+
+    button.social {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 50%;
+        background-color: color(primary-red);
+        color: white;
+        margin-right:10px;
+    }
+
+    button.fa-instagram {
+        font-size: 1.2rem;
+    }
+
+    .sign-up p {
+        padding-bottom:0px;
+    }
+
+    .sign-up input {
+        padding:10px 20px;
+        border-radius:5px 0px 0px 5px;
+        border:none;
+        
+        &::placeholder {
+            color: color(font-grey);
+            font-size:0.8rem;
+        }
+    }
+
+    .sign-up button {
+        background-color: white;
+        border:none;
+        border-radius: 0px 5px 5px 0px;
+        margin:0px;
+        height:100%;
+        position: relative;
+        padding: 10px;
+        left: -5px;
+        color: color(primary-red);
+    }
+}
