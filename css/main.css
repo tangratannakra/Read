@@ -141,11 +141,30 @@ nav .navbar-nav {
   margin-left: 150px;
 }
 
+@media (max-width: 991px) {
+  nav .navbar-nav {
+    background-color: white;
+    z-index: 1000;
+  }
+}
+
+@media (max-width: 991px) {
+  nav .nav-item {
+    padding: 10px 0px;
+    text-align: center;
+  }
+}
+
 nav .nav-link {
-  color: white !important;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   font-size: 0.8rem;
+}
+
+@media (max-width: 991px) {
+  nav .nav-link {
+    color: black !important;
+  }
 }
 
 nav .active {
@@ -406,6 +425,23 @@ nav .dropdown-menu a {
   padding-right: 0px;
 }
 
+@media (min-width: 768px) and (max-width: 1199px) {
+  .blog-article .content-columns {
+    -webkit-column-count: 1;
+            column-count: 1;
+    padding-left: 60px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-article .content-columns {
+    padding-left: 0px;
+    -webkit-column-count: 1;
+            column-count: 1;
+  }
+}
+
 .blog-article::before {
   content: "";
   position: absolute;
@@ -436,6 +472,13 @@ nav .dropdown-menu a {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .blog-cards .row {
+    margin-right: 0px;
+    margin-left: 0px;
   }
 }
 
@@ -620,6 +663,12 @@ nav .dropdown-menu a {
   background-color: #cc171e;
   color: white;
   margin-right: 10px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .footer button.social {
+    margin-right: 5px;
+  }
 }
 
 .footer button.fa-instagram {

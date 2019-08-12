@@ -257,11 +257,26 @@ nav {
     }
 
     .navbar-nav {
+        @include breakpoint-down(lg){
+            background-color: white;
+            z-index:1000;
+        }
         margin-left: 150px;
+        
+    }
+
+    .nav-item{
+        @include breakpoint-down(lg){
+            padding:10px 0px;
+            text-align: center;
+        }
     }
 
     .nav-link {
-    color:white!important;
+        @include breakpoint-down(lg){
+            color: black!important;
+        }
+    
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     font-size: 0.8rem;
@@ -485,6 +500,18 @@ nav {
         column-gap:2rem;
         padding-left:60px;
         padding-right:0px;
+
+        @include breakpoint-between(md, xl){
+            column-count: 1;
+        padding-left:60px;
+        padding-right:50px;
+
+        }
+
+        @include breakpoint-down(md){
+            padding-left: 0px;
+            column-count: 1;
+        }
     }
 
     &::before {
@@ -509,6 +536,10 @@ nav {
         justify-content: space-around;
         @include breakpoint-up(lg) {
             justify-content: space-between;
+        }
+        @include breakpoint-between(lg, xl){
+            margin-right:0px;
+            margin-left:0px;
         }
     }
     
@@ -653,6 +684,10 @@ nav {
         background-color: color(primary-red);
         color: white;
         margin-right:10px;
+
+        @include breakpoint-between(lg, xl){
+            margin-right:5px;
+        }
     }
 
     button.fa-instagram {
