@@ -35,7 +35,7 @@ body {
 }
 
 .above-fold {
-  background: url(img/curve-1.svg), linear-gradient(15deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), linear-gradient(15deg, rgba(17, 22, 29, 0.3), rgba(17, 22, 29, 0.3)), url(img/beverage-books-caffeine-904616.jpg);
+  background: url(../img/curve-1.svg), linear-gradient(15deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), linear-gradient(15deg, rgba(17, 22, 29, 0.3), rgba(17, 22, 29, 0.3)), url(img/beverage-books-caffeine-904616.jpg);
   background-repeat: no-repeat;
   background-position: right 0px, center, center, bottom;
   background-size: cover;
@@ -45,7 +45,7 @@ body {
 
 @media (min-width: 768px) {
   .above-fold {
-    background: url(img/curve-2.svg), url(img/curve-1.svg), linear-gradient(15deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), linear-gradient(15deg, rgba(17, 22, 29, 0.3), rgba(17, 22, 29, 0.3)), url(img/beverage-books-caffeine-904616.jpg);
+    background: url(../img/curve-2.svg), url(../img/curve-1.svg), linear-gradient(15deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), linear-gradient(15deg, rgba(17, 22, 29, 0.3), rgba(17, 22, 29, 0.3)), url(img/beverage-books-caffeine-904616.jpg);
     background-repeat: no-repeat;
     background-position: left 10px, right 0px, center, center, bottom;
     background-size: cover;
